@@ -1,7 +1,37 @@
 body {
-    
+    text-align: center;
 }
 
 h1 {
+    padding: 10px;
+    margin: 20px;
+}
+
+aside {
+    float: left;
+    padding: 10px;
+    margin: 20px;
+}
+
+article {
+    padding: 20px;
+}
+
+li {
+    list-style-type: none;
+    text-align: left;
+}
+
+section {
     text-align: center;
+}
+
+.city-card {
+    padding: 20px;
+}
+
+.forecast-card {
+    display: inline-flex;
+    padding: 10px;
+    margin: 5px;
 }
