@@ -1,10 +1,14 @@
 body {
     text-align: center;
+    background-color: antiquewhite;
 }
 
-h1 {
+header {
+    font-size: xx-large;
+    font-weight: bolder;
     padding: 10px;
     margin: 20px;
+    background-color: aquamarine;
 }
 
 aside {
@@ -24,14 +28,29 @@ li {
 
 section {
     text-align: center;
+    background-color: antiquewhite;
+    border-radius: 10px;
 }
 
 .city-card {
     padding: 20px;
+    background-color: aquamarine;
+}
+
+.icon {
+    width: 15%;
+    place-self: center;
 }
 
 .forecast-card {
     display: inline-flex;
     padding: 10px;
     margin: 5px;
+    background-color: aquamarine;
+    max-width: 200px;
+}
+
+.forecast-icon {
+    width: 100px;
+    place-self: center;
 }
