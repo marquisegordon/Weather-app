@@ -45,40 +45,45 @@ var futureWeather = {
         this.apiKey
     )
       .then((response) => response.json())
-      .then((data) => this.displayForecast(data));
-  },
-
-  displayForecast: function (data) {
-    i = 0;
-    var { dt_txt } = data.list[i];
-    var { icon } = data.list[i].weather[i];
-    var { temp, humidity } = data.list[i].main;
-    var { speed } = data.list[i].wind;
-    for (i = 0; i < 5; i++) {
-      document.getElementById("date" + (i + 1)).innerHTML = dt_txt;
-    }
-    for (i = 0; i < 5; i++) {
-      document.getElementById("forecast-icon" + (i + 1)).src =
-        "http://openweathermap.org/img/wn/" + icon + ".png";
-    }
-    for (i = 0; i < 5; i++) {
-      document.getElementById("temp" + (i + 1)).innerHTML =
-        "Temp: " + temp.toFixed(1) + "℉";
-    }
-    for (i = 0; i < 5; i++) {
-      document.getElementById("forecast-wind" + (i + 1)).innerHTML =
-        "Wind Speed: " + speed.toFixed(1) + " MPH";
-    }
-    for (i = 0; i < 5; i++) {
-      document.getElementById("forecast-humid" + (i + 1)).innerHTML =
-        "Humidity: " + humidity + "%";
-    }
+      .then((data) => {
+        for (i = 0; i < 5; i++) {
+            document.getElementById("forecast-icon" + (i + 1)).src =
+              "http://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + ".png";
+        }
+        for (i = 0; i < 5; i++) {
+            document.getElementById("temp" + (i + 1)).innerHTML =
+              "Temp: " + data.list[i].main.temp.toFixed(1) + "℉";
+        }
+        for (i = 0; i < 5; i++) {
+            document.getElementById("forecast-wind" + (i + 1)).innerHTML =
+              "Wind Speed: " + data.list[i].wind.speed.toFixed(1) + " MPH";
+        }
+        for (i = 0; i < 5; i++) {
+            document.getElementById("forecast-humid" + (i + 1)).innerHTML =
+              "Humidity: " + data.list[i].main.humidity + "%";
+        }
+      });
   },
 
   search: function () {
     this.fetchForecast(document.querySelector("#search-bar").value);
   },
 };
+
+var d = new Date();
+var weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+
+function checkDay(day){
+    if(day + d.getDay() > 6){
+        return day + d.getDay()-7;
+    } else {
+        return day + d.getDay();
+    }
+}
+
+for(i=0;i<5;i++){
+    document.getElementById("date" + (i + 1)).innerHTML = weekday[checkDay(i)];
+}
 
 document.querySelector("#searchBtn").addEventListener("click", function () {
   futureWeather.search();
